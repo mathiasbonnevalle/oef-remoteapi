@@ -10,7 +10,7 @@ print_r($_POST);
 require_once ('scripts/call_api.php');
 
 //code om iets toe te voegen
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && key_exists("userID",$_GET)) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = array();
     //linker keys (Nr, Omschrijving...) MOETEN zelfde zijn als keys
     //bij create nooit id's meegeven
@@ -20,8 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && key_exists("userID",$_GET)) {
     $user['password'] = $_POST['password'];
 
     //maak van deze waarden een json string
-    $result =
-        CallAPI("PATCH", "http://metamorph.be/datamanagement/demo/api.php/users/".$_GET['userID']);
+    $result = CallAPI("PATCH", "http://metamorph.be/datamanagement/demo/api.php/users/".$_POST['userID'],json_encode($user));
     echo '<pre>' . print_r($result, true) . '</pre>';
 
     //controle op numerische waarde
