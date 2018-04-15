@@ -26,6 +26,7 @@ if(isset($_GET["userID"]) == true){
 </header>
 <main>
     <form action="edit.code.php" method="post">
+		<input type="text" name="userID" value="<?=  $userID?>" hidden>
         <div>
             <label for="username">Gebruikersnaam</label>
             <input type="text" id="username" name="username">
